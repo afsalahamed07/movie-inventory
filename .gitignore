@@ -4,3 +4,6 @@ main.ts
 main_test.ts
 movie-inv.drawio
 src/output.css
+src/public/output.css
+src/public
+src/util/tmdb/movieList.ts

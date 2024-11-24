@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main {
+  @apply container mx-auto;
+}
+
+.pop-movie-list {
+  @apply grid grid-cols-5 gap-4;
+}
+
+.poster {
+  @apply px-4;
+}
+
+.poster-img {
+  @apply w-full rounded-lg;
+
+  img {
+    @apply object-contain rounded-lg;
+  }
+}
+
+.poster-title {
+  @apply text-center text-lg py-2;
+}

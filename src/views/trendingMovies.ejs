@@ -7,14 +7,16 @@
 		<link href="/style.css" rel="stylesheet">
 	</head>
 	<body>
-
+		<%- include("navbar", { genres: genres }) %>
 		<div class="main">
 			<div class="pop-movie-list">
 				<% movies.forEach(function(movie) { %>
-					<%- include("poster", {movie: movie}) %>
+					<%- include("poster", {movie: movie, to: to, btnMsg : btnMsg}) %>
 				<% }); %>
 			</div>
 		</div>
+
+		<script src="/script.js"></script>
 	</body>
 </html>
 

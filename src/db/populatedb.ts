@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS genres (
 CREATE TABLE IF NOT EXISTS movies (
   id INTEGER PRIMARY KEY,
   original_title VARCHAR,
-  backdrop_path VARCHAR,
-  original_language VARCHAR(10),
+  backdrop_path VARCHAR, original_language VARCHAR(10),
   overview TEXT,
   popularity DOUBLE PRECISION,
   poster_path VARCHAR,

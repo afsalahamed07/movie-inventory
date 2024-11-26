@@ -5,4 +5,11 @@
 	<div class="poster-title">
 		<p><%= movie.title %></p>
 	</div>
+	<div class="overlay">
+		<form action="collection/<%= to %>/<%= movie.id %>" method="POST">
+			<div class="btn">
+				<button type="submit"><%= btnMsg %></button>
+			</div>
+		</form>
+	</div>
 </div>

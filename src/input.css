@@ -2,26 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+.inconsolata-400 {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.inconsolata-700 {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.inconsolata-900 {
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
 .main {
   @apply container mx-auto;
 }
 
 .pop-movie-list {
-  @apply grid grid-cols-5 gap-4;
+  @apply grid grid-cols-5 gap-5;
 }
 
 .poster {
-  @apply px-4;
+  @apply px-4 py-2 bg-gray-100/50 rounded-xl cursor-pointer
+  transition ease-in-out duration-300 relative;
+}
+
+.overlay {
+  @apply flex flex-col absolute top-0 left-0 w-full h-full bg-gray-50/50
+  opacity-0 transition ease-in-out duration-300 justify-center content-center
+  hover:opacity-100;
+
+  form {
+    @apply mx-auto;
+  }
+}
+
+.btn {
+  @apply flex justify-center content-center px-4 py-2 inconsolata-900 text-lg text-white bg-indigo-300
+  hover:bg-indigo-500 mx-auto rounded-lg;
 }
 
 .poster-img {
-  @apply w-full rounded-lg;
+  @apply w-full;
 
   img {
-    @apply object-contain rounded-lg;
+    @apply object-contain rounded-xl;
   }
 }
 
 .poster-title {
-  @apply text-center text-lg py-2;
+  @apply text-nowrap text-ellipsis overflow-hidden text-center text-lg pt-2
+  inconsolata-400;
+}
+
+.navbar {
+  @apply container mx-auto flex justify-between py-4;
+}
+
+.nav-element {
+  @apply px-4 py-2 border-2 text-center my-auto rounded-lg border-black/50
+  transition ease-in-out duration-200 inconsolata-900 tracking-wide cursor-pointer
+  hover:bg-gray-200;
+}
+
+.right-nav {
+  @apply flex gap-4;
+}
+
+.dropdown {
+  @apply relative;
+}
+
+.dropdown-content {
+  @apply absolute z-10 bg-white p-4;
 }

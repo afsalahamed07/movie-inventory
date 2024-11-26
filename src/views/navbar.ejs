@@ -1,0 +1,37 @@
+<div class="navbar">
+	<div>
+		<a href="/">
+			<div class="nav-element">
+				Home
+			</div>
+		</a>
+	</div>
+
+	<div class="right-nav">
+		<div class="dropdown inline-block">
+			<a href="/" class="dropBtn">
+				<div class="nav-element">
+					Trending
+				</div>
+			</a>
+
+			<div class="dropdown-content hidden">
+				<% genres.forEach((genre) => { %>
+					<a href="/<%= genre.name %>">
+						<div class="nav-element">
+							<%= genre.name %>
+						</div>
+					</a>
+				<% }); %>
+			</div>
+		</div>
+		
+		<div>
+			<a href="/collection">
+				<div class="nav-element">
+					My Collection
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

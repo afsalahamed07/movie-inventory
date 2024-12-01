@@ -6,7 +6,6 @@ movie-inv.drawio
 src/output.css
 src/public/output.css
 src/public
-src/util/tmdb/movieList.ts
-src/util/tmdb/movie.ts
 node_modules
 package-lock.json
+.env

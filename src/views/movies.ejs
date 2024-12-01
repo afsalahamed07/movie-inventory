@@ -7,7 +7,7 @@
 		<link href="/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<%- include("navbar", { genres: genres }) %>
+		<%- include("navbar", { genres: genres, displayGenre: displayGenre }) %>
 		<div class="main">
 			<div class="pop-movie-list">
 				<% movies.forEach(function(movie) { %>

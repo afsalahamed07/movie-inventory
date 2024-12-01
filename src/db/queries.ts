@@ -5,7 +5,7 @@ async function runQueryParam(query: string, params: any[] = []) {
   const client = await pool.connect();
   let result;
   try {
-    result = await client.queryObject(query, params);
+    result = await client.query(query, params);
   } finally {
     client.release();
   }
@@ -16,7 +16,7 @@ async function runQuery(query: string) {
   const client = await pool.connect();
   let result;
   try {
-    result = await client.queryObject(query);
+    result = await client.query(query);
   } finally {
     client.release();
   }
@@ -67,18 +67,14 @@ async function queryGenres() {
 }
 
 async function queryMovieByID(id: number) {
-  const movie = await runQueryParam(
-    "SELECT * FROM movies WHERE id = ($1)",
-    [id],
-  );
+  const movie = await runQueryParam("SELECT * FROM movies WHERE id = ($1)", [
+    id,
+  ]);
   return movie;
 }
 
 async function deleteMovieByID(id: number) {
-  const movie = await runQueryParam(
-    "DELETE FROM movies WHERE id = ($1)",
-    [id],
-  );
+  const movie = await runQueryParam("DELETE FROM movies WHERE id = ($1)", [id]);
   return movie;
 }
 

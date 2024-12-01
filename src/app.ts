@@ -1,11 +1,12 @@
 // @deno-types="npm:@types/express"
-import express, { NextFunction, Request, Response } from "npm:express";
+import express, { NextFunction, Request, Response } from "express";
 import { trendingRoute } from "./routes/trendingRoute.ts";
-import * as path from "jsr:@std/path";
 import { collectionRoute } from "./routes/collectionRoute.ts";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
-const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const viewsPath = path.join(__dirname, "views");
 
 const assetPath = path.join(__dirname, "public");

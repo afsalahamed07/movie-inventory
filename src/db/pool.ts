@@ -1,13 +1,11 @@
-import { Pool } from "https://deno.land/x/postgres@v0.19.3/mod.ts";
+import * as pg from "pg";
 
 const POOL_CONNECTIONS = 20; // TODO: move to env
 
-export const pool = new Pool(
-  {
-    hostname: "localhost",
-    user: "afsalahamed",
-    database: "inventory_odin",
-    port: 5432,
-  },
-  POOL_CONNECTIONS,
-);
+export const pool = new pg.Pool({
+  host: "localhost",
+  user: "afsalahamed",
+  database: "inventory_odin",
+  port: 5432,
+  max: POOL_CONNECTIONS,
+});

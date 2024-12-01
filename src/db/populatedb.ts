@@ -1,6 +1,6 @@
-#! /usr/bin/env deno -A
+#! /usr/bin/env node
 
-import { Client } from "https://deno.land/x/postgres@v0.19.3/mod.ts";
+import { Client } from "pg";
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS genres (
@@ -45,12 +45,12 @@ async function main() {
   const client = new Client({
     user: "afsalahamed",
     database: "inventory_odin",
-    hostname: "localhost",
+    host: "localhost",
     port: 5432,
   });
 
   await client.connect();
-  await client.queryArray(SQL);
+  await client.query(SQL);
   await client.end();
   console.log("done");
 }

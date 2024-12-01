@@ -1,6 +1,6 @@
-#! /usr/bin/env deno -A
+#! /usr/bin/env node
 
-import { Client } from "https://deno.land/x/postgres@v0.19.3/mod.ts";
+import { Client } from "pg";
 
 const genres = [
   {
@@ -85,7 +85,7 @@ async function main() {
   const client = new Client({
     user: "afsalahamed",
     database: "inventory_odin",
-    hostname: "localhost",
+    host: "localhost",
     port: 5432,
   });
 
@@ -94,10 +94,10 @@ async function main() {
 
     // Use a for-loop to handle async/await properly
     for (const genre of genres) {
-      await client.queryArray(
-        `INSERT INTO genres (id, name) VALUES ($1, $2)`,
-        [genre.id, genre.name],
-      );
+      await client.query(`INSERT INTO genres (id, name) VALUES ($1, $2)`, [
+        genre.id,
+        genre.name,
+      ]);
     }
 
     console.log("Genres populated successfully");

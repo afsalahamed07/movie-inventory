@@ -1,4 +1,4 @@
-import { Router } from "npm:express";
+import { Router } from "express";
 import * as trendingController from "../controllers/trendingCotroller.ts";
 
 export const trendingRoute = Router();

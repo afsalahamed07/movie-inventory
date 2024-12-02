@@ -23,6 +23,18 @@ async function fetchMovies(param: string, page: number) {
   }
 }
 
+async function discoverWithGenre(genreID: number, page: number) {
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genreID}`;
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function getMoviesList(data: object) {
   const results = data.results;
 
@@ -75,4 +87,10 @@ function castToMovie(movieResult: object) {
   return movie;
 }
 
-export { castToMovie, fetchMovie, fetchMovies, getMoviesList };
+export {
+  castToMovie,
+  fetchMovie,
+  fetchMovies,
+  getMoviesList,
+  discoverWithGenre,
+};

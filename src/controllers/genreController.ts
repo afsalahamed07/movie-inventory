@@ -1,11 +1,22 @@
 import { Request, Response } from "express";
-import { fetchMovies } from "../util/tmdb/movieList";
+import { discoverWithGenre, fetchMovies } from "../util/tmdb/movieList";
+import { getMoviesList } from "../util/tmdb/movieList";
+import { queryGenres } from "../db/queries";
 
 export async function genreController(req: Request, res: Response) {
   // TODO: veify genre exist in the db
-  const genre = req.params.genre;
+  const genre = Number(req.params.genre);
+  const discoverResult = await discoverWithGenre(genre, 1);
+  const movielist = getMoviesList(discoverResult);
+  const genres = await queryGenres();
 
-  const movies = await fetchMovies(genre, 1);
+  const displayGenre = genres.rows.find(({ id }) => id == genre);
 
-  console.log(movies);
+  res.render("movies", {
+    movies: movielist,
+    to: "add",
+    btnMsg: "Add to Collection",
+    genres: genres.rows,
+    displayGenre: { name: displayGenre.name },
+  });
 }

@@ -9,7 +9,7 @@
 
 	<div class="right-nav">
 		<div class="dropdown inline-block">
-			<a href="/<%= displayGenre.link %>" class="dropBtn">
+			<a class="dropBtn">
 				<div class="nav-element">
 					<%= displayGenre.name %>
 				</div>
@@ -17,7 +17,7 @@
 
 			<div class="dropdown-content hidden">
 				<% genres.forEach((genre) => { %>
-					<a href="/<%= genre.name %>">
+					<a href="/genre/<%= genre.id %>">
 						<div class="nav-element">
 							<%= genre.name %>
 						</div>

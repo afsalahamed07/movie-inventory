@@ -1,9 +1,9 @@
-// @deno-types="npm:@types/express"
 import express, { NextFunction, Request, Response } from "express";
 import { trendingRoute } from "./routes/trendingRoute.ts";
 import { collectionRoute } from "./routes/collectionRoute.ts";
 import path from "path";
 import { fileURLToPath } from "url";
+import { genreRouter } from "./routes/genreRouter.ts";
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,5 +24,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use("/", trendingRoute);
 app.use("/collection", collectionRoute);
+app.use("/genre", genreRouter);
 
 app.listen(3000, () => console.log(`Listening at PORT: 3000`));

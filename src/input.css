@@ -28,6 +28,10 @@
   font-variation-settings: "wdth" 100;
 }
 
+body {
+  @apply bg-gradient-to-br from-[#26233a] to-[#191724] text-[#e0def4];
+}
+
 .main {
   @apply container mx-auto;
 }
@@ -37,14 +41,14 @@
 }
 
 .poster {
-  @apply px-4 py-2 bg-gray-100/50 rounded-xl cursor-pointer
-  transition ease-in-out duration-300 relative;
+  @apply px-4 py-2 bg-[#2a283e] text-[#e0def4] rounded-xl cursor-pointer
+  shadow-lg hover:shadow-xl transition-transform ease-in-out duration-300 relative;
 }
 
 .overlay {
-  @apply flex flex-col absolute top-0 left-0 w-full h-full bg-gray-50/50
-  opacity-0 transition ease-in-out duration-300 justify-center content-center
-  hover:opacity-100;
+  @apply flex flex-col absolute top-0 left-0 w-full h-full bg-gradient-to-b
+  from-[#eb6f92]/70 to-[#9ccfd8]/70 opacity-0 transition-opacity ease-in-out duration-300
+  justify-center items-center hover:opacity-100 rounded-xl text-[#e0def4];
 
   form {
     @apply mx-auto;
@@ -52,8 +56,8 @@
 }
 
 .btn {
-  @apply flex justify-center content-center px-4 py-2 inconsolata-900 text-lg text-white bg-indigo-300
-  hover:bg-indigo-500 mx-auto rounded-lg;
+  @apply flex justify-center items-center px-4 py-2 font-bold text-lg text-[#e0def4]
+  bg-[#f6c177] hover:bg-[#eb6f92] mx-auto rounded-lg shadow-md transition-all duration-300 ease-in-out;
 }
 
 .poster-img {
@@ -74,9 +78,10 @@
 }
 
 .nav-element {
-  @apply px-4 py-2 border-2 text-center my-auto rounded-lg border-black/50
-  transition ease-in-out duration-200 inconsolata-900 tracking-wide cursor-pointer
-  hover:bg-gray-200;
+  @apply px-4 py-2 border-2 text-center my-auto rounded-lg border-[#403d52]
+  transition ease-in-out duration-300 font-bold tracking-wide cursor-pointer
+  text-[#e0def4] bg-[#2a283e]
+  hover:bg-[#f6c177] hover:text-[#191724] hover:border-[#f6c177];
 }
 
 .right-nav {

@@ -82,6 +82,7 @@ function castToMovie(movieResult: object) {
     releaseDate: movieResult.release_date,
     title: movieResult.title,
     voteAverage: movieResult.vote_average,
+    originalTitle: "",
   };
 
   return movie;

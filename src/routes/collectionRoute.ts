@@ -1,6 +1,5 @@
-// @deno-types="npm:@types/express"
 import { Router } from "express";
-import * as collectionController from "../controllers/collectionController.ts";
+import * as collectionController from "../controllers/collectionController.js";
 
 export const collectionRoute = Router();
 

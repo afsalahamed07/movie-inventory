@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import * as movieList from "../util/tmdb/movieList.ts";
-import { queryGenres } from "../db/queries.ts";
+import { queryGenres } from "../db/queries.js";
 
 async function getTrendingMovies(req: Request, res: Response) {
   const popularMoviesResult = await movieList.fetchMovies("popular", 1);

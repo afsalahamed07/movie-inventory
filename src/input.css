@@ -29,7 +29,7 @@
 }
 
 body {
-  @apply bg-gradient-to-br from-[#26233a] to-[#191724] text-[#e0def4];
+  @apply bg-gradient-to-r from-[#26233a] to-[#191724] text-[#e0def4];
 }
 
 .main {

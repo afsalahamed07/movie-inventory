@@ -12,8 +12,6 @@ async function postCollection(req, res) {
   const id = Number(req.params.id);
   const name = req.body.title;
 
-  console.log(req.body);
-
   /** @type {import("../types/Movie.js").Movie} */
   const movie = { id: id, name: name };
 
@@ -54,8 +52,8 @@ async function getCollection(req, res) {
  * @returns {Promise<void>}
  */
 async function postDeleteFromCollection(req, res) {
-  const id = Number(req.params.id);
-  db.deleteMovieByID(id);
+  const movieId = Number(req.params.id);
+  db.deleteMovieFromCollection(req.user.id, movieId);
   res.redirect("/collection");
 }
 

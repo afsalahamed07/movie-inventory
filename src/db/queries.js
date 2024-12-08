@@ -128,6 +128,17 @@ async function getUserCollection(userId) {
   );
 }
 
+/**
+ * @param {number} userId
+ * @param {number} movieId
+ */
+async function deleteMovieFromCollection(userId, movieId) {
+  return await runQueryParam(
+    "DELETE FROM collection where user_id = $1 AND movie_id = $2",
+    [userId, movieId],
+  );
+}
+
 export {
   deleteMovieByID,
   insertToMovieGenre,
@@ -138,4 +149,5 @@ export {
   insertIntoUsers,
   insertIntoCollection,
   getUserCollection,
+  deleteMovieFromCollection,
 };

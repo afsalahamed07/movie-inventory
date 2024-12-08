@@ -7,6 +7,7 @@
 	</div>
 	<div class="overlay">
 		<form action="collection/<%= to %>/<%= movie.id %>" method="POST">
+      <input value="<%= movie.title %>" name="title" for="title" type="hidden">
 			<div class="btn">
 				<button type="submit"><%= btnMsg %></button>
 			</div>

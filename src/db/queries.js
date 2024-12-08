@@ -32,20 +32,20 @@ async function runQuery(query) {
 }
 
 /**
- * @param {import("../types/users.js").User} user
+ * @param {import("../types/User.js").User} user
  * @returns {void}
  */
 async function insertIntoUsers(user) {
   const query = `
     INSERT INTO users (
-      id, 
       name,
-      username
+      username,
+      password
     ) 
     VALUES ($1, $2, $3)
     ON CONFLICT (id) DO NOTHING
   `;
-  await runQueryParam(query, [user.id, user.username, user.name]);
+  await runQueryParam(query, [user.name, user.username, user.password]);
 }
 
 async function queryMovies() {
@@ -101,6 +101,33 @@ async function insertIntoMovies(movie) {
   ]);
 }
 
+/**
+ * @param {import("../types/Movie.js").Movie} movie
+ * @param {number} userId
+ */
+async function insertIntoCollection(movie, userId) {
+  const movieResult = await queryMovieByID(movie.id);
+
+  if (movieResult.rows.length < 1) {
+    await insertIntoMovies(movie);
+  }
+
+  runQueryParam(
+    "INSERT INTO collection (user_id, movie_id) VALUES ($1, $2) ON CONFLICT (user_id, movie_id) DO NOTHING",
+    [userId, movie.id],
+  );
+}
+
+/**
+ * @param {number} userId
+ */
+async function getUserCollection(userId) {
+  return await runQueryParam(
+    "SELECT movie_id FROM collection where user_id = $1",
+    [userId],
+  );
+}
+
 export {
   deleteMovieByID,
   insertToMovieGenre,
@@ -108,4 +135,7 @@ export {
   queryMovieByID,
   queryMovies,
   insertIntoMovies,
+  insertIntoUsers,
+  insertIntoCollection,
+  getUserCollection,
 };

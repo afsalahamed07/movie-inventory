@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as movieList from "../util/tmdb/movieList.ts";
+import * as movieList from "../util/tmdb/movieList.js";
 import { queryGenres } from "../db/queries.js";
 
 async function getTrendingMovies(req: Request, res: Response) {

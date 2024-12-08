@@ -1,11 +1,11 @@
 import express, { NextFunction, Request, Response } from "express";
 import { trendingRoute } from "./routes/trendingRoute.ts";
-import { collectionRoute } from "./routes/collectionRoute.ts";
+import { collectionRoute } from "./routes/collectionRoute.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { genreRouter } from "./routes/genreRouter.ts";
 import session from "express-session";
-import { signUpRoute } from "./routes/signUp.ts";
+import { registerRoute } from "./routes/registerRoute.js";
 import { loginRoute } from "./routes/loginRoute.js";
 import pgSession from "connect-pg-simple";
 import { pool } from "./db/pool.js";
@@ -17,7 +17,6 @@ const ensureAuthenticated = (
   res: Response,
   next: NextFunction,
 ) => {
-  console.log("ensureAuthenticated: ");
   if (req.isAuthenticated()) {
     return next();
   }
@@ -71,7 +70,7 @@ app.use((req, res, next) => {
 app.use("/", trendingRoute);
 app.use("/collection", collectionRoute);
 app.use("/genre", genreRouter);
-app.use("/sign-up", signUpRoute);
+app.use("/register", registerRoute);
 
 app.use("/login", loginRoute);
 

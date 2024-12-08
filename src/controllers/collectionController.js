@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as db from "../db/queries.js";
+import { fetchMovie } from "../util/tmdb/movieList.js";
 
 // TODO: need error handling
 /**
@@ -9,13 +10,14 @@ import * as db from "../db/queries.js";
  */
 async function postCollection(req, res) {
   const id = Number(req.params.id);
+  const name = req.body.title;
+
+  console.log(req.body);
 
   /** @type {import("../types/Movie.js").Movie} */
-  const movie = { id: id, name: "test" };
+  const movie = { id: id, name: name };
 
-  await db.insertIntoMovies(movie);
-
-  movie.genreIds.forEach((genreId) => db.insertToMovieGenre(movie.id, genreId));
+  await db.insertIntoCollection(movie, req.user.id);
 
   res.redirect("/collection");
 }
@@ -26,11 +28,18 @@ async function postCollection(req, res) {
  * @returns {Promise<void>}
  */
 async function getCollection(req, res) {
-  const collecitonList = await db.queryMovies();
+  const collecitonList = await db.getUserCollection(req.user.id);
   const genres = await db.queryGenres();
 
+  const movieList = await Promise.all(
+    collecitonList.rows.map(async ({ movie_id }) => {
+      const movie = await fetchMovie(movie_id);
+      return movie;
+    }),
+  );
+
   res.render("movies", {
-    movies: collecitonList.rows,
+    movies: movieList,
     to: "delete",
     genres: genres.rows,
     btnMsg: "Delete Collection",

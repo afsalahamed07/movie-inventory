@@ -1,4 +1,3 @@
-import { Movie } from "../../types/Movie.ts";
 import "dotenv/config.js";
 
 // TODO: move the authorization to env
@@ -11,7 +10,11 @@ const options = {
 };
 
 // TODO: try to add lang as param
-async function fetchMovies(param: string, page: number) {
+/**
+ * @param {string} param
+ * @param {number} page
+ */
+async function fetchMovies(param, page) {
   const url = `https://api.themoviedb.org/3/movie/${param}?language=en-US&page=${page}`;
 
   try {
@@ -23,7 +26,11 @@ async function fetchMovies(param: string, page: number) {
   }
 }
 
-async function discoverWithGenre(genreID: number, page: number) {
+/**
+ * @param {number} genreId
+ * @param {number} page
+ */
+async function discoverWithGenre(genreID, page) {
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genreID}`;
 
   try {
@@ -35,11 +42,12 @@ async function discoverWithGenre(genreID: number, page: number) {
   }
 }
 
-function getMoviesList(data: object) {
+function getMoviesList(data) {
   const results = data.results;
 
-  const movieList = results.map((movieResult: object) => {
-    const movie: Movie = {
+  /** @type {import("../../types/Movie").Movie[]} */
+  const movieList = results.map((movieResult) => {
+    const movie = {
       backdropPath: movieResult.backdrop_path,
       genreId: movieResult.genre_ids,
       id: movieResult.id,
@@ -58,7 +66,10 @@ function getMoviesList(data: object) {
   return movieList;
 }
 
-async function fetchMovie(id: number) {
+/**
+ * @param {number} id
+ */
+async function fetchMovie(id) {
   const url = `https://api.themoviedb.org/3/movie/${id}`;
 
   try {
@@ -70,8 +81,8 @@ async function fetchMovie(id: number) {
   }
 }
 
-function castToMovie(movieResult: object) {
-  const movie: Movie = {
+function castToMovie(movieResult) {
+  const movie = {
     backdropPath: movieResult.backdrop_path,
     genreIds: movieResult.genres.map((genre) => genre.id),
     id: movieResult.id,

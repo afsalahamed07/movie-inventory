@@ -8,4 +8,5 @@ collectionRoute.post(
   "/delete/:id",
   collectionController.postDeleteFromCollection,
 );
+
 collectionRoute.get("/", collectionController.getCollection);
